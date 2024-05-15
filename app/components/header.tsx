@@ -85,7 +85,9 @@ const Header = () => {
 						onKeyDown={onSubmit}
 					/>
 				)}
-				<p>nav</p>
+				<Link href="/contact">
+					Contact
+				</Link>
 			</nav>
 		</header>
 	);
