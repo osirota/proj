@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { GoogleAnalytics } from '@next/third-parties/google'
 import { Inter } from 'next/font/google';
 import Header from './components/header';
 import './globals.css';
@@ -21,6 +22,7 @@ export default function RootLayout({
 			<body className="bg-fct-body h-full">
 				<Header />
 				{children}
+				<GoogleAnalytics gaId="G-JGSFTZ6TKF" />
 			</body>
 		</html>
 	);
