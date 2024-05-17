@@ -53,7 +53,7 @@ const Profile = async ({ params: { id }, searchParams: { platform } }: any) => {
 		const response = await res.json();
 		const faceitResponse = await fetch(
 			`https://open.faceit.com/data/v4/players?game=cs2&game_player_id=${
-				response.response.steamid || id
+				response?.response?.steamid || id
 			}`,
 			{
 				headers: {
@@ -89,8 +89,20 @@ const Profile = async ({ params: { id }, searchParams: { platform } }: any) => {
 	);
 
 	const stats = await faceitStats.json();
+	if(stats.errors || faceitContent.errors) {
+		return (
+			<main className="profile-page container w-auto m-auto mt-10 h-screen">
+				<div className="mx-auto w-[40rem] bg-fct-header p-10 flex rounded">
+					<div>
+						<p className="text-xl mt-2 font-bold">Player not found</p>
+					</div>
+				</div>
+			</main>
+		);
+	}
+	
 
-	const lvlKey = faceitContent.games.cs2.skill_level || 1;
+	const lvlKey = faceitContent?.games?.cs2?.skill_level || 1;
 
 	return (
 		<main className="profile-page container w-auto m-auto mt-10">
