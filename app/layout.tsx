@@ -22,7 +22,7 @@ export default function RootLayout({
 			<body className="bg-fct-body h-full">
 				<Header />
 				{children}
-				<GoogleAnalytics gaId="G-P4XZ2HDDSK" />
+				<GoogleAnalytics gaId="G-JGSFTZ6TKF" />
 			</body>
 		</html>
 	);
