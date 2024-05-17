@@ -9,6 +9,7 @@ import IconLvl6 from '../../../img/lvl/6.svg';
 import IconLvl7 from '../../../img/lvl/7.svg';
 import IconLvl8 from '../../../img/lvl/8.svg';
 import IconLvl9 from '../../../img/lvl/9.svg';
+import type { Metadata } from 'next';
 
 const lvlsIcons: { [key: number]: any } = {
 	1: IconLvl1,
@@ -33,6 +34,10 @@ const lvls: { [key: number]: any } = {
 	8: 1501,
 	9: 1751,
 	10: 2001,
+};
+
+export const metadata: Metadata = {
+	title: 'Profile Faceit Finder',
 };
 
 const Profile = async ({ params: { id }, searchParams: { platform } }: any) => {

@@ -2,6 +2,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
+import { sendGAEvent } from '@next/third-parties/google'
 import { ChangeEvent, KeyboardEvent, useState } from 'react';
 import HeaderLogo from '../../img/header-logo.svg';
 
@@ -13,6 +14,7 @@ const Header = () => {
 		changeValue(event.currentTarget.value);
 	};
 	const onSubmit = async (e: KeyboardEvent) => {
+		sendGAEvent({ event: 'Header search submit', value })
 		if (e.key !== 'Enter') return;
 		e.preventDefault();
 		const FACEIT_URL_REGEX =

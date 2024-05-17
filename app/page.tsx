@@ -1,14 +1,10 @@
 'use client';
 
+import { sendGAEvent } from '@next/third-parties/google';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { ChangeEvent, FormEvent, useState } from 'react';
 import Logo from './../img/faceit_logo.svg';
-
-enum Platform {
-	steam = 'steamcommunity.com',
-	faceit = 'www.faceit.com',
-}
 
 export default function Home() {
 	const router = useRouter();
@@ -17,6 +13,7 @@ export default function Home() {
 		changeValue(event.currentTarget.value);
 	};
 	const onSubmit = async (e: FormEvent) => {
+		sendGAEvent({ event: 'Main page search submit', value });
 		e.preventDefault();
 		const FACEIT_URL_REGEX =
 			/^https?:\/\/(www\.)?faceit\.com\/(?:[a-z]{2}\/)?players\/([a-zA-Z0-9_-]+)\/?$/;
