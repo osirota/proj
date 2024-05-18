@@ -57,6 +57,7 @@ const Header = () => {
 				id = isSteamProfileUrlRes ? isSteamProfileUrlRes[2] : null;
 				break;
 		}
+		console.log(isSteamProfileUrl);
 		if (isSteamIdUrl) {
 			router.push(`/profile/${id}?platform=steam`);
 			return;
@@ -65,7 +66,11 @@ const Header = () => {
 			router.push(`/room/${id}`);
 			return;
 		}
-		if (isFaceitUrl || isFaceitName || isFaceitId || isSteamProfileUrl) {
+		if(isSteamProfileUrl) {
+			router.push(`/profile/${id}?platform=steam`);
+			return;
+		}
+		if (isFaceitUrl || isFaceitName || isFaceitId) {
 			router.push(`/profile/${id}?platform=faceit`);
 			return;
 		}

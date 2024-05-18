@@ -44,6 +44,7 @@ export const metadata: Metadata = {
 
 const Profile = async ({ params: { id }, searchParams: { platform } }: any) => {
 	let faceitContent;
+	let steamResponse;
 	if (platform === 'steam') {
 		const res = await fetch(
 			`https://api.steampowered.com/ISteamUser/ResolveVanityURL/v0001/?key=6E9106CB6287D984D0286ED706FAD401&vanityurl=${id}`
@@ -52,20 +53,21 @@ const Profile = async ({ params: { id }, searchParams: { platform } }: any) => {
 			// This will activate the closest `error.js` Error Boundary
 			throw new Error('Failed to fetch data');
 		}
-		const response = await res.json();
-		const faceitResponse = await fetch(
-			`https://open.faceit.com/data/v4/players?game=cs2&game_player_id=${
-				response?.response?.steamid || id
-			}`,
-			{
-				headers: {
-					'Content-Type': 'application/json',
-					Authorization: `Bearer 2ac7a275-e5ce-4c87-9be6-e269063df73f`,
-				},
-			}
-		);
-		faceitContent = await faceitResponse.json();
+		steamResponse = await res.json();
 	}
+
+	const faceitResponse = await fetch(
+		`https://open.faceit.com/data/v4/players?game=cs2&game_player_id=${
+			steamResponse?.response?.steamid || id
+		}`,
+		{
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: `Bearer 2ac7a275-e5ce-4c87-9be6-e269063df73f`,
+			},
+		}
+	);
+	faceitContent = await faceitResponse.json();
 
 	if (platform === 'faceit') {
 		const res = await fetch(
@@ -260,7 +262,10 @@ const Profile = async ({ params: { id }, searchParams: { platform } }: any) => {
 								</thead>
 								<tbody>
 									{stats.segments
-										.sort((a: any, b: any) => b.stats.Matches - a.stats.Matches)
+										.sort(
+											(a: any, b: any) =>
+												b.stats['Win Rate %'] - a.stats['Win Rate %']
+										)
 										.map((segment: any) => (
 											<tr className="border-b" key={segment.label}>
 												<th
