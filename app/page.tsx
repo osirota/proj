@@ -13,7 +13,7 @@ export default function Home() {
 		changeValue(event.currentTarget.value);
 	};
 	const onSubmit = async (e: FormEvent) => {
-		sendGAEvent({ event: 'Main page search submit', value });
+		sendGAEvent({ event: 'mainPageSearchSubmit', value });
 		e.preventDefault();
 		const FACEIT_URL_REGEX =
 			/^https?:\/\/(www\.)?faceit\.com\/(?:[a-z]{2}\/)?players\/([a-zA-Z0-9_-]+)\/?$/;

@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import IconLvl1 from '../../../img/lvl/1.svg';
 import IconLvl10 from '../../../img/lvl/10.svg';
@@ -9,7 +10,6 @@ import IconLvl6 from '../../../img/lvl/6.svg';
 import IconLvl7 from '../../../img/lvl/7.svg';
 import IconLvl8 from '../../../img/lvl/8.svg';
 import IconLvl9 from '../../../img/lvl/9.svg';
-import type { Metadata } from 'next';
 
 const lvlsIcons: { [key: number]: any } = {
 	1: IconLvl1,
@@ -37,7 +37,9 @@ const lvls: { [key: number]: any } = {
 };
 
 export const metadata: Metadata = {
-	title: 'Profile Faceit Finder',
+	title: 'FACEIT Finder - Player Profile and Statistics',
+	description:
+		'Explore detailed player profiles on FACEIT Finder, including stats, match history, and performance analytics. Check out Elo ratings, win rates, K/D ratios, and map-specific performance for competitive gaming insights.',
 };
 
 const Profile = async ({ params: { id }, searchParams: { platform } }: any) => {
@@ -89,7 +91,7 @@ const Profile = async ({ params: { id }, searchParams: { platform } }: any) => {
 	);
 
 	const stats = await faceitStats.json();
-	if(stats.errors || faceitContent.errors) {
+	if (stats.errors || faceitContent.errors) {
 		return (
 			<main className="profile-page container w-auto m-auto mt-10 h-screen">
 				<div className="mx-auto w-[40rem] bg-fct-header p-10 flex rounded">
@@ -100,7 +102,6 @@ const Profile = async ({ params: { id }, searchParams: { platform } }: any) => {
 			</main>
 		);
 	}
-	
 
 	const lvlKey = faceitContent?.games?.cs2?.skill_level || 1;
 

@@ -14,7 +14,7 @@ const Header = () => {
 		changeValue(event.currentTarget.value);
 	};
 	const onSubmit = async (e: KeyboardEvent) => {
-		sendGTMEvent({ event: 'Header search submit', value })
+		sendGTMEvent({ event: 'headerSearchButton', value })
 		if (e.key !== 'Enter') return;
 		e.preventDefault();
 		const FACEIT_URL_REGEX =
