@@ -19,7 +19,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body className="bg-fct-body h-full">
+			<body className="bg-fct-body">
 				<Header />
 				{children}
 				<GoogleAnalytics gaId="G-JGSFTZ6TKF" />

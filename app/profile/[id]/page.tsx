@@ -95,7 +95,7 @@ const Profile = async ({ params: { id }, searchParams: { platform } }: any) => {
 	const stats = await faceitStats.json();
 	if (stats.errors || faceitContent.errors) {
 		return (
-			<main className="profile-page container w-auto m-auto mt-10 h-screen">
+			<main className="profile-page container w-auto m-auto mt-10">
 				<div className="mx-auto w-[40rem] bg-fct-header p-10 flex rounded">
 					<div>
 						<p className="text-xl mt-2 font-bold">Player not found</p>
@@ -108,8 +108,8 @@ const Profile = async ({ params: { id }, searchParams: { platform } }: any) => {
 	const lvlKey = faceitContent?.games?.cs2?.skill_level || 1;
 
 	return (
-		<main className="profile-page container w-auto m-auto mt-10">
-			<div className="">
+		<main className="profile-page w-auto m-auto mt-10">
+			<div className="container xl:max-w-7xl mx-auto px-6 lg:px-8">
 				<div className="mx-auto w-[40rem] bg-fct-header p-10 flex rounded">
 					<div>
 						<Image
